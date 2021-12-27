@@ -17,8 +17,8 @@
 #include <tf/tf.h>
 #include <tf/transform_broadcaster.h>
 
-#define Wheel_Distance 0.36
-#define Wheel_Circumference 0.67
+#define Wheel_Distance 0.415
+#define Wheel_Circumference 0.61
 #define RPM_Click 20
 #define Encoder_Click 128
 
@@ -135,24 +135,41 @@ void loop() {
   //cmd_vx = 0;
   //cmd_vz = 3;
 
-  getVESCValue();
-  Odometry();
-  batt_msg.data = analogRead(A9) / 30.4;
-  battery.publish( &batt_msg);
-  Serial.println(FL_temp);
-  motortemp_msg.data[0] = FL_temp;
-  motortemp_msg.data[1] = FR_temp;
-  motortemp_msg.data[2] = BL_temp;
-  motortemp_msg.data[3] = BR_temp;
+//  Serial.println("Move");
+//  int right_rpm = 1000;
+//  int32_t timer = millis();
+//  while (millis() - timer < 5000) {
+//    MotorBR.setRPM(right_rpm);
+//    MotorFR.setRPM(right_rpm);
+//    MotorBL.setRPM(right_rpm);
+//    MotorFL.setRPM(right_rpm);
+//  }
+//  Serial.println("Stop");
+//  right_rpm = 0;
+//  MotorBR.setRPM(right_rpm);
+//  MotorFR.setRPM(right_rpm);
+//  MotorBL.setRPM(right_rpm);
+//  MotorFL.setRPM(right_rpm);
+//  delay(5000);
+
+    getVESCValue();
+    Odometry();
+    batt_msg.data = analogRead(A9) / 30.4;
+    battery.publish( &batt_msg);
+    Serial.println(FL_temp);
+    motortemp_msg.data[0] = FL_temp;
+    motortemp_msg.data[1] = FR_temp;
+    motortemp_msg.data[2] = BL_temp;
+    motortemp_msg.data[3] = BR_temp;
   
-  motortemp.publish( &motortemp_msg);
-  cmd_velToVESC();
-  //  Serial.print("VX:");
-  //  Serial.print(cmd_vx);
-  //  Serial.print(" |VY:");
-  //  Serial.print(cmd_vy);
-  //  Serial.print(" |VZ:");
-  //  Serial.println(cmd_vz);
+    motortemp.publish( &motortemp_msg);
+    cmd_velToVESC();
+//    Serial.print("VX:");
+//    Serial.print(cmd_vx);
+//    Serial.print(" |VY:");
+//    Serial.print(cmd_vy);
+//    Serial.print(" |VZ:");
+//    Serial.println(cmd_vz);
 
   nh.spinOnce();
 }
@@ -163,8 +180,8 @@ void cmd_velToVESC() {
   float right_rpm = ( right_speed_ms / Wheel_Circumference ) * 60 * RPM_Click;
   float left_rpm = ( left_speed_ms / Wheel_Circumference ) * 60 * RPM_Click;
   if (right_rpm == 0) {
-    //MotorBR.setBrakeCurrent(30);
-    //MotorFR.setBrakeCurrent(30);
+    MotorBR.setBrakeCurrent(30);
+    MotorFR.setBrakeCurrent(30);
     //MotorBR.setRPM(0);
     //MotorFR.setRPM(0);
   }
@@ -173,8 +190,8 @@ void cmd_velToVESC() {
     MotorFR.setRPM(right_rpm);
   }
   if (left_rpm == 0) {
-    //MotorFL.setBrakeCurrent(30);
-    //MotorBL.setBrakeCurrent(30);
+    MotorFL.setBrakeCurrent(30);
+    MotorBL.setBrakeCurrent(30);
     //MotorFL.setRPM(0);
     //MotorBL.setRPM(0);
   }
@@ -253,12 +270,12 @@ void Odometry() {
   //  Serial.print(" |right_ms:");
   //  Serial.print(right_speed_ms);
 
-  //  Serial.print(" |x:");
-  //  Serial.print(x);
-  //  Serial.print(" |y:");
-  //  Serial.print(y);
-  //  Serial.print(" |theta:");
-  //  Serial.println(THETA);
+    Serial.print(" |x:");
+    Serial.print(x);
+    Serial.print(" |y:");
+    Serial.print(y);
+    Serial.print(" |theta:");
+    Serial.println(THETA);
   t.header.frame_id = odom;
   t.child_frame_id = base_link;
 

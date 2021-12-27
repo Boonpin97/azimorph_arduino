@@ -205,15 +205,15 @@ void Odometry() {
   Serial.print(y);
   Serial.print(" |theta:");
   Serial.println(THETA);
-  //  t.header.frame_id = odom;
-  //  t.child_frame_id = base_link;
-  //
-  //  t.transform.translation.x = x;
-  //  t.transform.translation.y = y;
-  //
-  //  t.transform.rotation = tf::createQuaternionFromYaw(THETA);
-  //  t.header.stamp = nh.now();
-  //
-  //  broadcaster.sendTransform(t);
-  //  nh.spinOnce();
+    t.header.frame_id = odom;
+    t.child_frame_id = base_link;
+  
+    t.transform.translation.x = x;
+    t.transform.translation.y = y;
+  
+    t.transform.rotation = tf::createQuaternionFromYaw(THETA);
+    t.header.stamp = nh.now();
+  
+    broadcaster.sendTransform(t);
+    nh.spinOnce();
 }
