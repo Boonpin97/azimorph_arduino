@@ -22,7 +22,7 @@ void setup() {
   while (!nh.connected()) {
     nh.spinOnce();
   }
-} 
+}
 
 void loop() {
 
@@ -39,6 +39,7 @@ void loop() {
     navSat_msg.latitude = String(flat == TinyGPS::GPS_INVALID_F_ANGLE ? 0.0 : flat, 6).toFloat();
     navSat_msg.longitude = String(flon == TinyGPS::GPS_INVALID_F_ANGLE ? 0.0 : flon, 6).toFloat();
     navSat_msg.altitude = 0;
+    navSat_msg.header.stamp = nh.now();
     gpsPub.publish(&navSat_msg);
     // velocity
     publish_gps_time = millis();
