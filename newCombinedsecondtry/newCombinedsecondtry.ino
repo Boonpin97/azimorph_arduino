@@ -270,7 +270,7 @@ void updateOdom() {
   //displayspeed(); //display the speed
 
   
-  
+  od
 
   /*left_speed_ms=EncSpeedToMs(left_speed_robo); //ticks/s to m/s
   right_speed_ms=EncSpeedToMs(right_speed_robo); //ticks/s to m/s
@@ -335,4 +335,3 @@ void Odometry ( double speedx, double speedtheta){
 }
 
   
-

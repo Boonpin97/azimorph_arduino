@@ -10,12 +10,14 @@
 #include <ros.h>
 #include <ros/time.h>
 #include <geometry_msgs/Twist.h>
+#include <geometry_msgs/Quaternion.h>
+#include <nav_msgs/Odometry.h>
 #include <std_msgs/Float64.h>
 #include <std_msgs/Float64MultiArray.h>
 #include <std_msgs/String.h>
 #include <math.h>
-#include <tf/tf.h>
-#include <tf/transform_broadcaster.h>
+//#include <tf/tf.h>
+//#include <tf/transform_broadcaster.h>
 
 #define Wheel_Distance 0.415
 #define Wheel_Circumference 0.61
@@ -24,12 +26,12 @@
 
 ros::NodeHandle nh;
 
-geometry_msgs::TransformStamped t;
-tf::TransformBroadcaster broadcaster;
+//geometry_msgs::TransformStamped t;
 std_msgs::Float64 batt_msg;
 std_msgs::Float64MultiArray motortemp_msg;
-char base_link[] = "/base_link";
-char odom[] = "/odom";
+nav_msgs::Odometry odom_msg;
+char baseFrame[] = "/base_link";
+char odomFrame[] = "/odom";
 
 /** Initiate VescUart class */
 VescUart MotorFR;
@@ -69,6 +71,7 @@ void cmdVelCb(const geometry_msgs::Twist& msg) {
 ros::Subscriber<geometry_msgs::Twist> cmdVelSub("/cmd_vel", &cmdVelCb);
 ros::Publisher battery("battery", &batt_msg);
 ros::Publisher motortemp("motor_temp", &motortemp_msg);
+ros::Publisher odomPub("odom", &odom_msg);
 
 void setup() {
 
@@ -78,12 +81,14 @@ void setup() {
   Serial3.begin(115200);
   Serial4.begin(115200);
   Serial5.begin(115200);
+  nh.getHardware()->setBaud(57600);
 
-  broadcaster.init(nh);
+  //broadcaster.init(nh);
   nh.initNode();
   nh.subscribe(cmdVelSub);
   nh.advertise(battery);
   nh.advertise(motortemp);
+  nh.advertise(odomPub);
   motortemp_msg.data = (float*)malloc(sizeof(float) * 4);
   motortemp_msg.data_length = 4;
   while (!Serial2) {
@@ -135,41 +140,41 @@ void loop() {
   //cmd_vx = 0;
   //cmd_vz = 3;
 
-//  Serial.println("Move");
-//  int right_rpm = 1000;
-//  int32_t timer = millis();
-//  while (millis() - timer < 5000) {
-//    MotorBR.setRPM(right_rpm);
-//    MotorFR.setRPM(right_rpm);
-//    MotorBL.setRPM(right_rpm);
-//    MotorFL.setRPM(right_rpm);
-//  }
-//  Serial.println("Stop");
-//  right_rpm = 0;
-//  MotorBR.setRPM(right_rpm);
-//  MotorFR.setRPM(right_rpm);
-//  MotorBL.setRPM(right_rpm);
-//  MotorFL.setRPM(right_rpm);
-//  delay(5000);
+  //  Serial.println("Move");
+  //  int right_rpm = 1000;
+  //  int32_t timer = millis();
+  //  while (millis() - timer < 5000) {
+  //    MotorBR.setRPM(right_rpm);
+  //    MotorFR.setRPM(right_rpm);
+  //    MotorBL.setRPM(right_rpm);
+  //    MotorFL.setRPM(right_rpm);
+  //  }
+  //  Serial.println("Stop");
+  //  right_rpm = 0;
+  //  MotorBR.setRPM(right_rpm);
+  //  MotorFR.setRPM(right_rpm);
+  //  MotorBL.setRPM(right_rpm);
+  //  MotorFL.setRPM(right_rpm);
+  //  delay(5000);
 
-    getVESCValue();
-    Odometry();
-    batt_msg.data = analogRead(A9) / 30.4;
-    battery.publish( &batt_msg);
-    Serial.println(FL_temp);
-    motortemp_msg.data[0] = FL_temp;
-    motortemp_msg.data[1] = FR_temp;
-    motortemp_msg.data[2] = BL_temp;
-    motortemp_msg.data[3] = BR_temp;
-  
-    motortemp.publish( &motortemp_msg);
-    cmd_velToVESC();
-//    Serial.print("VX:");
-//    Serial.print(cmd_vx);
-//    Serial.print(" |VY:");
-//    Serial.print(cmd_vy);
-//    Serial.print(" |VZ:");
-//    Serial.println(cmd_vz);
+  getVESCValue();
+  batt_msg.data = analogRead(A9) / 30.4;
+  battery.publish( &batt_msg);
+  Serial.println(FL_temp);
+  motortemp_msg.data[0] = FL_temp;
+  motortemp_msg.data[1] = FR_temp;
+  motortemp_msg.data[2] = BL_temp;
+  motortemp_msg.data[3] = BR_temp;
+
+  motortemp.publish( &motortemp_msg);
+  cmd_velToVESC();
+  //    Serial.print("VX:");
+  //    Serial.print(cmd_vx);
+  //    Serial.print(" |VY:");
+  //    Serial.print(cmd_vy);
+  //    Serial.print(" |VZ:");
+  //    Serial.println(cmd_vz);
+  Odometry();
 
   nh.spinOnce();
 }
@@ -270,21 +275,34 @@ void Odometry() {
   //  Serial.print(" |right_ms:");
   //  Serial.print(right_speed_ms);
 
-    Serial.print(" |x:");
-    Serial.print(x);
-    Serial.print(" |y:");
-    Serial.print(y);
-    Serial.print(" |theta:");
-    Serial.println(THETA);
-  t.header.frame_id = odom;
-  t.child_frame_id = base_link;
+  Serial.print(" |x:");
+  Serial.print(x);
+  Serial.print(" |y:");
+  Serial.print(y);
+  Serial.print(" |theta:");
+  Serial.println(THETA);
 
-  t.transform.translation.x = x;
-  t.transform.translation.y = y;
+  geometry_msgs::Quaternion quaternion;
+  quaternion.x = 0.0;
+  quaternion.y = 0.0;
+  quaternion.z = sin(THETA / 2.0);
+  quaternion.w = cos(THETA / 2.0);
 
-  t.transform.rotation = tf::createQuaternionFromYaw(THETA);
-  t.header.stamp = nh.now();
+  /* Publish the distances and speeds on the odom topic. Set the timestamp
+      to the last encoder time. */
+  odom_msg.header.frame_id = odomFrame;
+  odom_msg.child_frame_id = baseFrame;
+  odom_msg.header.stamp = nh.now();
+  odom_msg.pose.pose.position.x = x;
+  odom_msg.pose.pose.position.y = y;
+  odom_msg.pose.pose.position.z = 0;
+  odom_msg.pose.pose.orientation = quaternion;
+  odom_msg.twist.twist.linear.x = delta_r;
+  odom_msg.twist.twist.linear.y = delta_theta;
+  odom_msg.twist.twist.linear.z = 0;
+  odom_msg.twist.twist.angular.x = 0;
+  odom_msg.twist.twist.angular.y = 0;
+  odom_msg.twist.twist.angular.z = THETA;
 
-  broadcaster.sendTransform(t);
-  nh.spinOnce();
+  odomPub.publish(&odom_msg);
 }
