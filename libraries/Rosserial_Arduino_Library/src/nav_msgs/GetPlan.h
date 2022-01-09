@@ -4,13 +4,14 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "geometry_msgs/PoseStamped.h"
 #include "nav_msgs/Path.h"
 
 namespace nav_msgs
 {
 
-static const char GETPLAN[] = "nav_msgs/GetPlan";
+static const char GETPLAN[] PROGMEM = "nav_msgs/GetPlan";
 
   class GetPlanRequest : public ros::Msg
   {
@@ -29,7 +30,7 @@ static const char GETPLAN[] = "nav_msgs/GetPlan";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       offset += this->start.serialize(outbuffer + offset);
@@ -47,7 +48,7 @@ static const char GETPLAN[] = "nav_msgs/GetPlan";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       offset += this->start.deserialize(inbuffer + offset);
@@ -66,8 +67,8 @@ static const char GETPLAN[] = "nav_msgs/GetPlan";
      return offset;
     }
 
-    virtual const char * getType() override { return GETPLAN; };
-    virtual const char * getMD5() override { return "e25a43e0752bcca599a8c2eef8282df8"; };
+    const char * getType(){ return GETPLAN; };
+    const char * getMD5(){ return PSTR( "e25a43e0752bcca599a8c2eef8282df8" ); };
 
   };
 
@@ -82,22 +83,22 @@ static const char GETPLAN[] = "nav_msgs/GetPlan";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       offset += this->plan.serialize(outbuffer + offset);
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       offset += this->plan.deserialize(inbuffer + offset);
      return offset;
     }
 
-    virtual const char * getType() override { return GETPLAN; };
-    virtual const char * getMD5() override { return "0002bc113c0259d71f6cf8cbc9430e18"; };
+    const char * getType(){ return GETPLAN; };
+    const char * getMD5(){ return PSTR( "0002bc113c0259d71f6cf8cbc9430e18" ); };
 
   };
 

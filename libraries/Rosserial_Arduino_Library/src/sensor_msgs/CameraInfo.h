@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "sensor_msgs/RegionOfInterest.h"
 
@@ -41,7 +42,7 @@ namespace sensor_msgs
       height(0),
       width(0),
       distortion_model(""),
-      D_length(0), st_D(), D(nullptr),
+      D_length(0), D(NULL),
       K(),
       R(),
       P(),
@@ -51,7 +52,7 @@ namespace sensor_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -101,7 +102,7 @@ namespace sensor_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -159,8 +160,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "sensor_msgs/CameraInfo"; };
-    virtual const char * getMD5() override { return "c9a58c1b0b154e0e6da7578cb991d214"; };
+    const char * getType(){ return PSTR( "sensor_msgs/CameraInfo" ); };
+    const char * getMD5(){ return PSTR( "c9a58c1b0b154e0e6da7578cb991d214" ); };
 
   };
 

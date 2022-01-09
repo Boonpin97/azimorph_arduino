@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "actionlib/TestRequestActionGoal.h"
 #include "actionlib/TestRequestActionResult.h"
 #include "actionlib/TestRequestActionFeedback.h"
@@ -29,7 +30,7 @@ namespace actionlib
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       offset += this->action_goal.serialize(outbuffer + offset);
@@ -38,7 +39,7 @@ namespace actionlib
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       offset += this->action_goal.deserialize(inbuffer + offset);
@@ -47,8 +48,8 @@ namespace actionlib
      return offset;
     }
 
-    virtual const char * getType() override { return "actionlib/TestRequestAction"; };
-    virtual const char * getMD5() override { return "dc44b1f4045dbf0d1db54423b3b86b30"; };
+    const char * getType(){ return PSTR( "actionlib/TestRequestAction" ); };
+    const char * getMD5(){ return PSTR( "dc44b1f4045dbf0d1db54423b3b86b30" ); };
 
   };
 

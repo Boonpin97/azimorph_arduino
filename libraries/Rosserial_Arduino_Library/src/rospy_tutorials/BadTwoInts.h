@@ -9,11 +9,7 @@
 namespace rospy_tutorials
 {
 
-#ifdef ESP8266
-    static const char BADTWOINTS[] = "rospy_tutorials/BadTwoInts";
-#else
-    static const char BADTWOINTS[] PROGMEM = "rospy_tutorials/BadTwoInts";
-#endif
+static const char BADTWOINTS[] PROGMEM = "rospy_tutorials/BadTwoInts";
 
   class BadTwoIntsRequest : public ros::Msg
   {
@@ -92,11 +88,7 @@ namespace rospy_tutorials
     }
 
     const char * getType(){ return BADTWOINTS; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("29bb5c7dea8bf822f53e94b0ee5a3a56");};
-    #else
-        const char * getMD5() { return  PSTR("29bb5c7dea8bf822f53e94b0ee5a3a56");};
-    #endif
+    const char * getMD5(){ return PSTR( "29bb5c7dea8bf822f53e94b0ee5a3a56" ); };
 
   };
 
@@ -145,11 +137,7 @@ namespace rospy_tutorials
     }
 
     const char * getType(){ return BADTWOINTS; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("0ba699c25c9418c0366f3595c0c8e8ec");};
-    #else
-        const char * getMD5() { return  PSTR("0ba699c25c9418c0366f3595c0c8e8ec");};
-    #endif
+    const char * getMD5(){ return PSTR( "0ba699c25c9418c0366f3595c0c8e8ec" ); };
 
   };
 

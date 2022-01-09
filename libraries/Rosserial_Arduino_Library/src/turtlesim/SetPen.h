@@ -9,11 +9,7 @@
 namespace turtlesim
 {
 
-#ifdef ESP8266
-    static const char SETPEN[] = "turtlesim/SetPen";
-#else
-    static const char SETPEN[] PROGMEM = "turtlesim/SetPen";
-#endif
+static const char SETPEN[] PROGMEM = "turtlesim/SetPen";
 
   class SetPenRequest : public ros::Msg
   {
@@ -71,11 +67,7 @@ namespace turtlesim
     }
 
     const char * getType(){ return SETPEN; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("9f452acce566bf0c0954594f69a8e41b");};
-    #else
-        const char * getMD5() { return  PSTR("9f452acce566bf0c0954594f69a8e41b");};
-    #endif
+    const char * getMD5(){ return PSTR( "9f452acce566bf0c0954594f69a8e41b" ); };
 
   };
 
@@ -100,11 +92,7 @@ namespace turtlesim
     }
 
     const char * getType(){ return SETPEN; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
-    #else
-        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
-    #endif
+    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
 
   };
 

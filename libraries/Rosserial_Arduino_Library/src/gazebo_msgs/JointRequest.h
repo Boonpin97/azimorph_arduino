@@ -9,11 +9,7 @@
 namespace gazebo_msgs
 {
 
-#ifdef ESP8266
-    static const char JOINTREQUEST[] = "gazebo_msgs/JointRequest";
-#else
-    static const char JOINTREQUEST[] PROGMEM = "gazebo_msgs/JointRequest";
-#endif
+static const char JOINTREQUEST[] PROGMEM = "gazebo_msgs/JointRequest";
 
   class JointRequestRequest : public ros::Msg
   {
@@ -53,11 +49,7 @@ namespace gazebo_msgs
     }
 
     const char * getType(){ return JOINTREQUEST; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("0be1351618e1dc030eb7959d9a4902de");};
-    #else
-        const char * getMD5() { return  PSTR("0be1351618e1dc030eb7959d9a4902de");};
-    #endif
+    const char * getMD5(){ return PSTR( "0be1351618e1dc030eb7959d9a4902de" ); };
 
   };
 
@@ -82,11 +74,7 @@ namespace gazebo_msgs
     }
 
     const char * getType(){ return JOINTREQUEST; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
-    #else
-        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
-    #endif
+    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
 
   };
 

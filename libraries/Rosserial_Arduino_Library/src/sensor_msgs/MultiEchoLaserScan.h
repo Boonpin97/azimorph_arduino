@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "sensor_msgs/LaserEcho.h"
 
@@ -48,12 +49,12 @@ namespace sensor_msgs
       scan_time(0),
       range_min(0),
       range_max(0),
-      ranges_length(0), st_ranges(), ranges(nullptr),
-      intensities_length(0), st_intensities(), intensities(nullptr)
+      ranges_length(0), ranges(NULL),
+      intensities_length(0), intensities(NULL)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -146,7 +147,7 @@ namespace sensor_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -254,8 +255,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "sensor_msgs/MultiEchoLaserScan"; };
-    virtual const char * getMD5() override { return "6fefb0c6da89d7c8abe4b339f5c2f8fb"; };
+    const char * getType(){ return PSTR( "sensor_msgs/MultiEchoLaserScan" ); };
+    const char * getMD5(){ return PSTR( "6fefb0c6da89d7c8abe4b339f5c2f8fb" ); };
 
   };
 

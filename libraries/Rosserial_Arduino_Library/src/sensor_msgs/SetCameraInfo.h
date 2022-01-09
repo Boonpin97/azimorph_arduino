@@ -4,12 +4,13 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "sensor_msgs/CameraInfo.h"
 
 namespace sensor_msgs
 {
 
-static const char SETCAMERAINFO[] = "sensor_msgs/SetCameraInfo";
+static const char SETCAMERAINFO[] PROGMEM = "sensor_msgs/SetCameraInfo";
 
   class SetCameraInfoRequest : public ros::Msg
   {
@@ -22,22 +23,22 @@ static const char SETCAMERAINFO[] = "sensor_msgs/SetCameraInfo";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       offset += this->camera_info.serialize(outbuffer + offset);
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       offset += this->camera_info.deserialize(inbuffer + offset);
      return offset;
     }
 
-    virtual const char * getType() override { return SETCAMERAINFO; };
-    virtual const char * getMD5() override { return "ee34be01fdeee563d0d99cd594d5581d"; };
+    const char * getType(){ return SETCAMERAINFO; };
+    const char * getMD5(){ return PSTR( "ee34be01fdeee563d0d99cd594d5581d" ); };
 
   };
 
@@ -55,7 +56,7 @@ static const char SETCAMERAINFO[] = "sensor_msgs/SetCameraInfo";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       union {
@@ -73,7 +74,7 @@ static const char SETCAMERAINFO[] = "sensor_msgs/SetCameraInfo";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       union {
@@ -96,8 +97,8 @@ static const char SETCAMERAINFO[] = "sensor_msgs/SetCameraInfo";
      return offset;
     }
 
-    virtual const char * getType() override { return SETCAMERAINFO; };
-    virtual const char * getMD5() override { return "2ec6f3eff0161f4257b808b12bc830c2"; };
+    const char * getType(){ return SETCAMERAINFO; };
+    const char * getMD5(){ return PSTR( "2ec6f3eff0161f4257b808b12bc830c2" ); };
 
   };
 

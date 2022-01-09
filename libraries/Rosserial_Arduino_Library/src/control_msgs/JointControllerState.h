@@ -104,16 +104,8 @@ namespace control_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("control_msgs/JointControllerState");};
-    #else
-        const char * getType() { return  PSTR("control_msgs/JointControllerState");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("987ad85e4756f3aef7f1e5e7fe0595d1");};
-    #else
-        const char * getMD5() { return  PSTR("987ad85e4756f3aef7f1e5e7fe0595d1");};
-    #endif
+    const char * getType(){ return PSTR( "control_msgs/JointControllerState" ); };
+    const char * getMD5(){ return PSTR( "987ad85e4756f3aef7f1e5e7fe0595d1" ); };
 
   };
 

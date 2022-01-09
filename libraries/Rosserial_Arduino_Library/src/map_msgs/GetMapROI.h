@@ -10,11 +10,7 @@
 namespace map_msgs
 {
 
-#ifdef ESP8266
-    static const char GETMAPROI[] = "map_msgs/GetMapROI";
-#else
-    static const char GETMAPROI[] PROGMEM = "map_msgs/GetMapROI";
-#endif
+static const char GETMAPROI[] PROGMEM = "map_msgs/GetMapROI";
 
   class GetMapROIRequest : public ros::Msg
   {
@@ -57,11 +53,7 @@ namespace map_msgs
     }
 
     const char * getType(){ return GETMAPROI; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("43c2ff8f45af555c0eaf070c401e9a47");};
-    #else
-        const char * getMD5() { return  PSTR("43c2ff8f45af555c0eaf070c401e9a47");};
-    #endif
+    const char * getMD5(){ return PSTR( "43c2ff8f45af555c0eaf070c401e9a47" ); };
 
   };
 
@@ -91,11 +83,7 @@ namespace map_msgs
     }
 
     const char * getType(){ return GETMAPROI; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("4d1986519c00d81967d2891a606b234c");};
-    #else
-        const char * getMD5() { return  PSTR("4d1986519c00d81967d2891a606b234c");};
-    #endif
+    const char * getMD5(){ return PSTR( "4d1986519c00d81967d2891a606b234c" ); };
 
   };
 

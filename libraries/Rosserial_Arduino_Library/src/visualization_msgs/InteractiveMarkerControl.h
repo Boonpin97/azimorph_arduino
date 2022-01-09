@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "geometry_msgs/Quaternion.h"
 #include "visualization_msgs/Marker.h"
 
@@ -52,13 +53,13 @@ namespace visualization_msgs
       orientation_mode(0),
       interaction_mode(0),
       always_visible(0),
-      markers_length(0), st_markers(), markers(nullptr),
+      markers_length(0), markers(NULL),
       independent_marker_orientation(0),
       description("")
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       uint32_t length_name = strlen(this->name);
@@ -101,7 +102,7 @@ namespace visualization_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       uint32_t length_name;
@@ -158,8 +159,8 @@ namespace visualization_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "visualization_msgs/InteractiveMarkerControl"; };
-    virtual const char * getMD5() override { return "b3c81e785788195d1840b86c28da1aac"; };
+    const char * getType(){ return PSTR( "visualization_msgs/InteractiveMarkerControl" ); };
+    const char * getMD5(){ return PSTR( "b3c81e785788195d1840b86c28da1aac" ); };
 
   };
 

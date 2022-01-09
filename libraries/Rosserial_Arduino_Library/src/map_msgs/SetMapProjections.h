@@ -10,11 +10,7 @@
 namespace map_msgs
 {
 
-#ifdef ESP8266
-    static const char SETMAPPROJECTIONS[] = "map_msgs/SetMapProjections";
-#else
-    static const char SETMAPPROJECTIONS[] PROGMEM = "map_msgs/SetMapProjections";
-#endif
+static const char SETMAPPROJECTIONS[] PROGMEM = "map_msgs/SetMapProjections";
 
   class SetMapProjectionsRequest : public ros::Msg
   {
@@ -37,11 +33,7 @@ namespace map_msgs
     }
 
     const char * getType(){ return SETMAPPROJECTIONS; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
-    #else
-        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
-    #endif
+    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
 
   };
 
@@ -91,11 +83,7 @@ namespace map_msgs
     }
 
     const char * getType(){ return SETMAPPROJECTIONS; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("d7980a33202421c8cd74565e57a4d229");};
-    #else
-        const char * getMD5() { return  PSTR("d7980a33202421c8cd74565e57a4d229");};
-    #endif
+    const char * getMD5(){ return PSTR( "d7980a33202421c8cd74565e57a4d229" ); };
 
   };
 

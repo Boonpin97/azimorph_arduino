@@ -9,11 +9,7 @@
 namespace turtlesim
 {
 
-#ifdef ESP8266
-    static const char SPAWN[] = "turtlesim/Spawn";
-#else
-    static const char SPAWN[] PROGMEM = "turtlesim/Spawn";
-#endif
+static const char SPAWN[] PROGMEM = "turtlesim/Spawn";
 
   class SpawnRequest : public ros::Msg
   {
@@ -125,11 +121,7 @@ namespace turtlesim
     }
 
     const char * getType(){ return SPAWN; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("57f001c49ab7b11d699f8606c1f4f7ff");};
-    #else
-        const char * getMD5() { return  PSTR("57f001c49ab7b11d699f8606c1f4f7ff");};
-    #endif
+    const char * getMD5(){ return PSTR( "57f001c49ab7b11d699f8606c1f4f7ff" ); };
 
   };
 
@@ -171,11 +163,7 @@ namespace turtlesim
     }
 
     const char * getType(){ return SPAWN; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("c1f3d28f1b044c871e6eff2e9fc3c667");};
-    #else
-        const char * getMD5() { return  PSTR("c1f3d28f1b044c871e6eff2e9fc3c667");};
-    #endif
+    const char * getMD5(){ return PSTR( "c1f3d28f1b044c871e6eff2e9fc3c667" ); };
 
   };
 

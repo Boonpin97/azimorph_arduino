@@ -48,16 +48,8 @@ namespace control_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("control_msgs/FollowJointTrajectoryActionFeedback");};
-    #else
-        const char * getType() { return  PSTR("control_msgs/FollowJointTrajectoryActionFeedback");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("d8920dc4eae9fc107e00999cce4be641");};
-    #else
-        const char * getMD5() { return  PSTR("d8920dc4eae9fc107e00999cce4be641");};
-    #endif
+    const char * getType(){ return PSTR( "control_msgs/FollowJointTrajectoryActionFeedback" ); };
+    const char * getMD5(){ return PSTR( "d8920dc4eae9fc107e00999cce4be641" ); };
 
   };
 

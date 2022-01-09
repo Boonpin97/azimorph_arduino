@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "geometry_msgs/Point.h"
 
@@ -25,7 +26,7 @@ namespace geometry_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -33,7 +34,7 @@ namespace geometry_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -41,8 +42,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "geometry_msgs/PointStamped"; };
-    virtual const char * getMD5() override { return "c63aecb41bfdfd6b7e1fac37c7cbe7bf"; };
+    const char * getType(){ return PSTR( "geometry_msgs/PointStamped" ); };
+    const char * getMD5(){ return PSTR( "c63aecb41bfdfd6b7e1fac37c7cbe7bf" ); };
 
   };
 

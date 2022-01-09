@@ -9,11 +9,7 @@
 namespace controller_manager_msgs
 {
 
-#ifdef ESP8266
-    static const char LISTCONTROLLERTYPES[] = "controller_manager_msgs/ListControllerTypes";
-#else
-    static const char LISTCONTROLLERTYPES[] PROGMEM = "controller_manager_msgs/ListControllerTypes";
-#endif
+static const char LISTCONTROLLERTYPES[] PROGMEM = "controller_manager_msgs/ListControllerTypes";
 
   class ListControllerTypesRequest : public ros::Msg
   {
@@ -36,11 +32,7 @@ namespace controller_manager_msgs
     }
 
     const char * getType(){ return LISTCONTROLLERTYPES; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
-    #else
-        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
-    #endif
+    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
 
   };
 
@@ -139,11 +131,7 @@ namespace controller_manager_msgs
     }
 
     const char * getType(){ return LISTCONTROLLERTYPES; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("c1d4cd11aefa9f97ba4aeb5b33987f4e");};
-    #else
-        const char * getMD5() { return  PSTR("c1d4cd11aefa9f97ba4aeb5b33987f4e");};
-    #endif
+    const char * getMD5(){ return PSTR( "c1d4cd11aefa9f97ba4aeb5b33987f4e" ); };
 
   };
 

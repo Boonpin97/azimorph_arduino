@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace std_msgs
 {
@@ -20,7 +21,7 @@ namespace std_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       uint32_t length_data = strlen(this->data);
@@ -31,7 +32,7 @@ namespace std_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       uint32_t length_data;
@@ -46,8 +47,8 @@ namespace std_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "std_msgs/String"; };
-    virtual const char * getMD5() override { return "992ce8a1687cec8c8bd883ec73ca41d1"; };
+    const char * getType(){ return PSTR( "std_msgs/String" ); };
+    const char * getMD5(){ return PSTR( "992ce8a1687cec8c8bd883ec73ca41d1" ); };
 
   };
 

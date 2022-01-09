@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "geometry_msgs/Vector3.h"
 
@@ -27,7 +28,7 @@ namespace sensor_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -38,7 +39,7 @@ namespace sensor_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -49,8 +50,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "sensor_msgs/MagneticField"; };
-    virtual const char * getMD5() override { return "2f3b0b43eed0c9501de0fa3ff89a45aa"; };
+    const char * getType(){ return PSTR( "sensor_msgs/MagneticField" ); };
+    const char * getMD5(){ return PSTR( "2f3b0b43eed0c9501de0fa3ff89a45aa" ); };
 
   };
 

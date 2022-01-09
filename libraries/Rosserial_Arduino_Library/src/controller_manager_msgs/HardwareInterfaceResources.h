@@ -84,16 +84,8 @@ namespace controller_manager_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("controller_manager_msgs/HardwareInterfaceResources");};
-    #else
-        const char * getType() { return  PSTR("controller_manager_msgs/HardwareInterfaceResources");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("f25b55cbf1d1f76e82e5ec9e83f76258");};
-    #else
-        const char * getMD5() { return  PSTR("f25b55cbf1d1f76e82e5ec9e83f76258");};
-    #endif
+    const char * getType(){ return PSTR( "controller_manager_msgs/HardwareInterfaceResources" ); };
+    const char * getMD5(){ return PSTR( "f25b55cbf1d1f76e82e5ec9e83f76258" ); };
 
   };
 

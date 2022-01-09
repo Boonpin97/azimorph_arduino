@@ -9,11 +9,7 @@
 namespace gazebo_msgs
 {
 
-#ifdef ESP8266
-    static const char SETMODELCONFIGURATION[] = "gazebo_msgs/SetModelConfiguration";
-#else
-    static const char SETMODELCONFIGURATION[] PROGMEM = "gazebo_msgs/SetModelConfiguration";
-#endif
+static const char SETMODELCONFIGURATION[] PROGMEM = "gazebo_msgs/SetModelConfiguration";
 
   class SetModelConfigurationRequest : public ros::Msg
   {
@@ -132,11 +128,7 @@ namespace gazebo_msgs
     }
 
     const char * getType(){ return SETMODELCONFIGURATION; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("160eae60f51fabff255480c70afa289f");};
-    #else
-        const char * getMD5() { return  PSTR("160eae60f51fabff255480c70afa289f");};
-    #endif
+    const char * getMD5(){ return PSTR( "160eae60f51fabff255480c70afa289f" ); };
 
   };
 
@@ -196,11 +188,7 @@ namespace gazebo_msgs
     }
 
     const char * getType(){ return SETMODELCONFIGURATION; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("2ec6f3eff0161f4257b808b12bc830c2");};
-    #else
-        const char * getMD5() { return  PSTR("2ec6f3eff0161f4257b808b12bc830c2");};
-    #endif
+    const char * getMD5(){ return PSTR( "2ec6f3eff0161f4257b808b12bc830c2" ); };
 
   };
 

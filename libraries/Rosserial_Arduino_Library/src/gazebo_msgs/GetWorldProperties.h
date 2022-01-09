@@ -9,11 +9,7 @@
 namespace gazebo_msgs
 {
 
-#ifdef ESP8266
-    static const char GETWORLDPROPERTIES[] = "gazebo_msgs/GetWorldProperties";
-#else
-    static const char GETWORLDPROPERTIES[] PROGMEM = "gazebo_msgs/GetWorldProperties";
-#endif
+static const char GETWORLDPROPERTIES[] PROGMEM = "gazebo_msgs/GetWorldProperties";
 
   class GetWorldPropertiesRequest : public ros::Msg
   {
@@ -36,11 +32,7 @@ namespace gazebo_msgs
     }
 
     const char * getType(){ return GETWORLDPROPERTIES; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("d41d8cd98f00b204e9800998ecf8427e");};
-    #else
-        const char * getMD5() { return  PSTR("d41d8cd98f00b204e9800998ecf8427e");};
-    #endif
+    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
 
   };
 
@@ -160,11 +152,7 @@ namespace gazebo_msgs
     }
 
     const char * getType(){ return GETWORLDPROPERTIES; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("36bb0f2eccf4d8be971410c22818ba3f");};
-    #else
-        const char * getMD5() { return  PSTR("36bb0f2eccf4d8be971410c22818ba3f");};
-    #endif
+    const char * getMD5(){ return PSTR( "36bb0f2eccf4d8be971410c22818ba3f" ); };
 
   };
 

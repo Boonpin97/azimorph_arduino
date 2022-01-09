@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "geometry_msgs/TransformStamped.h"
 #include "tf2_msgs/TF2Error.h"
 
@@ -25,7 +26,7 @@ namespace tf2_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       offset += this->transform.serialize(outbuffer + offset);
@@ -33,7 +34,7 @@ namespace tf2_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       offset += this->transform.deserialize(inbuffer + offset);
@@ -41,8 +42,8 @@ namespace tf2_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "tf2_msgs/LookupTransformResult"; };
-    virtual const char * getMD5() override { return "3fe5db6a19ca9cfb675418c5ad875c36"; };
+    const char * getType(){ return PSTR( "tf2_msgs/LookupTransformResult" ); };
+    const char * getMD5(){ return PSTR( "3fe5db6a19ca9cfb675418c5ad875c36" ); };
 
   };
 

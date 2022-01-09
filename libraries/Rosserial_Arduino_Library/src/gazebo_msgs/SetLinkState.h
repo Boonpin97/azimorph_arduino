@@ -10,11 +10,7 @@
 namespace gazebo_msgs
 {
 
-#ifdef ESP8266
-    static const char SETLINKSTATE[] = "gazebo_msgs/SetLinkState";
-#else
-    static const char SETLINKSTATE[] PROGMEM = "gazebo_msgs/SetLinkState";
-#endif
+static const char SETLINKSTATE[] PROGMEM = "gazebo_msgs/SetLinkState";
 
   class SetLinkStateRequest : public ros::Msg
   {
@@ -42,11 +38,7 @@ namespace gazebo_msgs
     }
 
     const char * getType(){ return SETLINKSTATE; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("22a2c757d56911b6f27868159e9a872d");};
-    #else
-        const char * getMD5() { return  PSTR("22a2c757d56911b6f27868159e9a872d");};
-    #endif
+    const char * getMD5(){ return PSTR( "22a2c757d56911b6f27868159e9a872d" ); };
 
   };
 
@@ -106,11 +98,7 @@ namespace gazebo_msgs
     }
 
     const char * getType(){ return SETLINKSTATE; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("2ec6f3eff0161f4257b808b12bc830c2");};
-    #else
-        const char * getMD5() { return  PSTR("2ec6f3eff0161f4257b808b12bc830c2");};
-    #endif
+    const char * getMD5(){ return PSTR( "2ec6f3eff0161f4257b808b12bc830c2" ); };
 
   };
 

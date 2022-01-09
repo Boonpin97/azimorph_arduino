@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "geometry_msgs/Transform.h"
 #include "geometry_msgs/Twist.h"
@@ -37,14 +38,14 @@ namespace sensor_msgs
 
     MultiDOFJointState():
       header(),
-      joint_names_length(0), st_joint_names(), joint_names(nullptr),
-      transforms_length(0), st_transforms(), transforms(nullptr),
-      twist_length(0), st_twist(), twist(nullptr),
-      wrench_length(0), st_wrench(), wrench(nullptr)
+      joint_names_length(0), joint_names(NULL),
+      transforms_length(0), transforms(NULL),
+      twist_length(0), twist(NULL),
+      wrench_length(0), wrench(NULL)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -87,7 +88,7 @@ namespace sensor_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -150,8 +151,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "sensor_msgs/MultiDOFJointState"; };
-    virtual const char * getMD5() override { return "690f272f0640d2631c305eeb8301e59d"; };
+    const char * getType(){ return PSTR( "sensor_msgs/MultiDOFJointState" ); };
+    const char * getMD5(){ return PSTR( "690f272f0640d2631c305eeb8301e59d" ); };
 
   };
 

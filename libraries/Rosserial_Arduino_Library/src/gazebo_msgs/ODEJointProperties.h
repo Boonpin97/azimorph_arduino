@@ -280,16 +280,8 @@ namespace gazebo_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("gazebo_msgs/ODEJointProperties");};
-    #else
-        const char * getType() { return  PSTR("gazebo_msgs/ODEJointProperties");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("1b744c32a920af979f53afe2f9c3511f");};
-    #else
-        const char * getMD5() { return  PSTR("1b744c32a920af979f53afe2f9c3511f");};
-    #endif
+    const char * getType(){ return PSTR( "gazebo_msgs/ODEJointProperties" ); };
+    const char * getMD5(){ return PSTR( "1b744c32a920af979f53afe2f9c3511f" ); };
 
   };
 

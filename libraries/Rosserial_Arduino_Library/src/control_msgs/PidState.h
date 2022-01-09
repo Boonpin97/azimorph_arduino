@@ -115,16 +115,8 @@ namespace control_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("control_msgs/PidState");};
-    #else
-        const char * getType() { return  PSTR("control_msgs/PidState");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("b138ec00e886c10e73f27e8712252ea6");};
-    #else
-        const char * getMD5() { return  PSTR("b138ec00e886c10e73f27e8712252ea6");};
-    #endif
+    const char * getType(){ return PSTR( "control_msgs/PidState" ); };
+    const char * getMD5(){ return PSTR( "b138ec00e886c10e73f27e8712252ea6" ); };
 
   };
 
