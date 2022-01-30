@@ -30,8 +30,8 @@ ros::NodeHandle nh;
 std_msgs::Float64 batt_msg;
 std_msgs::Float64MultiArray motortemp_msg;
 nav_msgs::Odometry odom_msg;
-char baseFrame[] = "/base_link";
-char odomFrame[] = "/odom";
+char baseFrame[] = "base_link";
+char odomFrame[] = "odom";
 
 /** Initiate VescUart class */
 VescUart MotorFR;
@@ -71,7 +71,7 @@ void cmdVelCb(const geometry_msgs::Twist& msg) {
 ros::Subscriber<geometry_msgs::Twist> cmdVelSub("/cmd_vel", &cmdVelCb);
 ros::Publisher battery("battery", &batt_msg);
 ros::Publisher motortemp("motor_temp", &motortemp_msg);
-ros::Publisher odomPub("odom", &odom_msg);
+ros::Publisher odomPub("odom_raw", &odom_msg);
 
 void setup() {
 
@@ -131,36 +131,11 @@ void setup() {
 
 void loop() {
 
-  /** Call the function getVescValues() to acquire data from VESC */
-
-  //  MotorBR.setRPM(100);
-  //  Motor FR.setRPM(100);
-  //  MotorFL.setRPM(spd);
-  //  MotorBL.setRPM(spd);
-  //cmd_vx = 0;
-  //cmd_vz = 3;
-
-  //  Serial.println("Move");
-  //  int right_rpm = 1000;
-  //  int32_t timer = millis();
-  //  while (millis() - timer < 5000) {
-  //    MotorBR.setRPM(right_rpm);
-  //    MotorFR.setRPM(right_rpm);
-  //    MotorBL.setRPM(right_rpm);
-  //    MotorFL.setRPM(right_rpm);
-  //  }
-  //  Serial.println("Stop");
-  //  right_rpm = 0;
-  //  MotorBR.setRPM(right_rpm);
-  //  MotorFR.setRPM(right_rpm);
-  //  MotorBL.setRPM(right_rpm);
-  //  MotorFL.setRPM(right_rpm);
-  //  delay(5000);
-
   getVESCValue();
-  batt_msg.data = analogRead(A9) / 30.4;
+  batt_msg.data = analogRead(A9) / 35.2;
+  Serial.println(batt_msg.data);
   battery.publish( &batt_msg);
-  Serial.println(FL_temp);
+  //Serial.println(FL_temp);
   motortemp_msg.data[0] = FL_temp;
   motortemp_msg.data[1] = FR_temp;
   motortemp_msg.data[2] = BL_temp;
@@ -262,14 +237,14 @@ void Odometry() {
   //    Serial.print(" theta:");
   //    Serial.println(vtheta);
 
-  //    Serial.print("FR");
-  //    Serial.print(FR_enc_speed);
-  //    Serial.print(" BR:");
-  //    Serial.print(BR_enc_speed);
-  //    Serial.print(" FL:");
-  //    Serial.print(FL_enc_speed);
-  //    Serial.print(" BL");
-  //    Serial.println(BL_enc_speed);
+//      Serial.print("FR");
+//      Serial.print(current_FR_enc);
+//      Serial.print(" BR:");
+//      Serial.print(current_BR_enc);
+//      Serial.print(" FL:");
+//      Serial.print(current_FL_enc);
+//      Serial.print(" BL");
+//      Serial.println(current_BL_enc);
   //  Serial.print("left_ms:");
   //  Serial.print(left_speed_ms);
   //  Serial.print(" |right_ms:");
