@@ -62,16 +62,8 @@ namespace control_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("control_msgs/JointTolerance");};
-    #else
-        const char * getType() { return  PSTR("control_msgs/JointTolerance");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("f544fe9c16cf04547e135dd6063ff5be");};
-    #else
-        const char * getMD5() { return  PSTR("f544fe9c16cf04547e135dd6063ff5be");};
-    #endif
+    const char * getType(){ return PSTR( "control_msgs/JointTolerance" ); };
+    const char * getMD5(){ return PSTR( "f544fe9c16cf04547e135dd6063ff5be" ); };
 
   };
 

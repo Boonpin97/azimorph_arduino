@@ -9,11 +9,7 @@
 namespace controller_manager_msgs
 {
 
-#ifdef ESP8266
-    static const char UNLOADCONTROLLER[] = "controller_manager_msgs/UnloadController";
-#else
-    static const char UNLOADCONTROLLER[] PROGMEM = "controller_manager_msgs/UnloadController";
-#endif
+static const char UNLOADCONTROLLER[] PROGMEM = "controller_manager_msgs/UnloadController";
 
   class UnloadControllerRequest : public ros::Msg
   {
@@ -53,11 +49,7 @@ namespace controller_manager_msgs
     }
 
     const char * getType(){ return UNLOADCONTROLLER; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("c1f3d28f1b044c871e6eff2e9fc3c667");};
-    #else
-        const char * getMD5() { return  PSTR("c1f3d28f1b044c871e6eff2e9fc3c667");};
-    #endif
+    const char * getMD5(){ return PSTR( "c1f3d28f1b044c871e6eff2e9fc3c667" ); };
 
   };
 
@@ -100,11 +92,7 @@ namespace controller_manager_msgs
     }
 
     const char * getType(){ return UNLOADCONTROLLER; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("6f6da3883749771fac40d6deb24a8c02");};
-    #else
-        const char * getMD5() { return  PSTR("6f6da3883749771fac40d6deb24a8c02");};
-    #endif
+    const char * getMD5(){ return PSTR( "6f6da3883749771fac40d6deb24a8c02" ); };
 
   };
 

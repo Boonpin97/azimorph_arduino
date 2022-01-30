@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "geometry_msgs/AccelWithCovariance.h"
 
@@ -25,7 +26,7 @@ namespace geometry_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -33,7 +34,7 @@ namespace geometry_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -41,8 +42,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "geometry_msgs/AccelWithCovarianceStamped"; };
-    virtual const char * getMD5() override { return "96adb295225031ec8d57fb4251b0a886"; };
+    const char * getType(){ return PSTR( "geometry_msgs/AccelWithCovarianceStamped" ); };
+    const char * getMD5(){ return PSTR( "96adb295225031ec8d57fb4251b0a886" ); };
 
   };
 

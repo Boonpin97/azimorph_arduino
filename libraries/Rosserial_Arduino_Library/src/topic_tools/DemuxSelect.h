@@ -4,11 +4,12 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace topic_tools
 {
 
-static const char DEMUXSELECT[] = "topic_tools/DemuxSelect";
+static const char DEMUXSELECT[] PROGMEM = "topic_tools/DemuxSelect";
 
   class DemuxSelectRequest : public ros::Msg
   {
@@ -21,7 +22,7 @@ static const char DEMUXSELECT[] = "topic_tools/DemuxSelect";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       uint32_t length_topic = strlen(this->topic);
@@ -32,7 +33,7 @@ static const char DEMUXSELECT[] = "topic_tools/DemuxSelect";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       uint32_t length_topic;
@@ -47,8 +48,8 @@ static const char DEMUXSELECT[] = "topic_tools/DemuxSelect";
      return offset;
     }
 
-    virtual const char * getType() override { return DEMUXSELECT; };
-    virtual const char * getMD5() override { return "d8f94bae31b356b24d0427f80426d0c3"; };
+    const char * getType(){ return DEMUXSELECT; };
+    const char * getMD5(){ return PSTR( "d8f94bae31b356b24d0427f80426d0c3" ); };
 
   };
 
@@ -63,7 +64,7 @@ static const char DEMUXSELECT[] = "topic_tools/DemuxSelect";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       uint32_t length_prev_topic = strlen(this->prev_topic);
@@ -74,7 +75,7 @@ static const char DEMUXSELECT[] = "topic_tools/DemuxSelect";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       uint32_t length_prev_topic;
@@ -89,8 +90,8 @@ static const char DEMUXSELECT[] = "topic_tools/DemuxSelect";
      return offset;
     }
 
-    virtual const char * getType() override { return DEMUXSELECT; };
-    virtual const char * getMD5() override { return "3db0a473debdbafea387c9e49358c320"; };
+    const char * getType(){ return DEMUXSELECT; };
+    const char * getMD5(){ return PSTR( "3db0a473debdbafea387c9e49358c320" ); };
 
   };
 

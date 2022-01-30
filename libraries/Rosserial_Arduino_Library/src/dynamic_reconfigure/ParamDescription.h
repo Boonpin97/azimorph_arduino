@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace dynamic_reconfigure
 {
@@ -32,7 +33,7 @@ namespace dynamic_reconfigure
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       uint32_t length_name = strlen(this->name);
@@ -63,7 +64,7 @@ namespace dynamic_reconfigure
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       uint32_t length_name;
@@ -110,8 +111,8 @@ namespace dynamic_reconfigure
      return offset;
     }
 
-    virtual const char * getType() override { return "dynamic_reconfigure/ParamDescription"; };
-    virtual const char * getMD5() override { return "7434fcb9348c13054e0c3b267c8cb34d"; };
+    const char * getType(){ return PSTR( "dynamic_reconfigure/ParamDescription" ); };
+    const char * getMD5(){ return PSTR( "7434fcb9348c13054e0c3b267c8cb34d" ); };
 
   };
 

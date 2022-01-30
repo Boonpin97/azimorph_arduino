@@ -10,11 +10,7 @@
 namespace gazebo_msgs
 {
 
-#ifdef ESP8266
-    static const char SPAWNMODEL[] = "gazebo_msgs/SpawnModel";
-#else
-    static const char SPAWNMODEL[] PROGMEM = "gazebo_msgs/SpawnModel";
-#endif
+static const char SPAWNMODEL[] PROGMEM = "gazebo_msgs/SpawnModel";
 
   class SpawnModelRequest : public ros::Msg
   {
@@ -110,11 +106,7 @@ namespace gazebo_msgs
     }
 
     const char * getType(){ return SPAWNMODEL; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("6d0eba5753761cd57e6263a056b79930");};
-    #else
-        const char * getMD5() { return  PSTR("6d0eba5753761cd57e6263a056b79930");};
-    #endif
+    const char * getMD5(){ return PSTR( "6d0eba5753761cd57e6263a056b79930" ); };
 
   };
 
@@ -174,11 +166,7 @@ namespace gazebo_msgs
     }
 
     const char * getType(){ return SPAWNMODEL; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("2ec6f3eff0161f4257b808b12bc830c2");};
-    #else
-        const char * getMD5() { return  PSTR("2ec6f3eff0161f4257b808b12bc830c2");};
-    #endif
+    const char * getMD5(){ return PSTR( "2ec6f3eff0161f4257b808b12bc830c2" ); };
 
   };
 

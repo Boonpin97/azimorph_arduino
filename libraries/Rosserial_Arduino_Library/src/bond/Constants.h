@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace bond
 {
@@ -23,20 +24,20 @@ namespace bond
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
      return offset;
     }
 
-    virtual const char * getType() override { return "bond/Constants"; };
-    virtual const char * getMD5() override { return "6fc594dc1d7bd7919077042712f8c8b0"; };
+    const char * getType(){ return PSTR( "bond/Constants" ); };
+    const char * getMD5(){ return PSTR( "6fc594dc1d7bd7919077042712f8c8b0" ); };
 
   };
 

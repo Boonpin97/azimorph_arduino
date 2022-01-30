@@ -10,11 +10,7 @@
 namespace control_msgs
 {
 
-#ifdef ESP8266
-    static const char QUERYTRAJECTORYSTATE[] = "control_msgs/QueryTrajectoryState";
-#else
-    static const char QUERYTRAJECTORYSTATE[] PROGMEM = "control_msgs/QueryTrajectoryState";
-#endif
+static const char QUERYTRAJECTORYSTATE[] PROGMEM = "control_msgs/QueryTrajectoryState";
 
   class QueryTrajectoryStateRequest : public ros::Msg
   {
@@ -60,11 +56,7 @@ namespace control_msgs
     }
 
     const char * getType(){ return QUERYTRAJECTORYSTATE; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("556a4fb76023a469987922359d08a844");};
-    #else
-        const char * getMD5() { return  PSTR("556a4fb76023a469987922359d08a844");};
-    #endif
+    const char * getMD5(){ return PSTR( "556a4fb76023a469987922359d08a844" ); };
 
   };
 
@@ -201,11 +193,7 @@ namespace control_msgs
     }
 
     const char * getType(){ return QUERYTRAJECTORYSTATE; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("1f1a6554ad060f44d013e71868403c1a");};
-    #else
-        const char * getMD5() { return  PSTR("1f1a6554ad060f44d013e71868403c1a");};
-    #endif
+    const char * getMD5(){ return PSTR( "1f1a6554ad060f44d013e71868403c1a" ); };
 
   };
 

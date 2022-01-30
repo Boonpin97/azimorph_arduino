@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "geometry_msgs/Point.h"
 #include "geometry_msgs/Quaternion.h"
 
@@ -25,7 +26,7 @@ namespace geometry_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       offset += this->position.serialize(outbuffer + offset);
@@ -33,7 +34,7 @@ namespace geometry_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       offset += this->position.deserialize(inbuffer + offset);
@@ -41,8 +42,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "geometry_msgs/Pose"; };
-    virtual const char * getMD5() override { return "e45d45a5a1ce597b249e23fb30fc871f"; };
+    const char * getType(){ return PSTR( "geometry_msgs/Pose" ); };
+    const char * getMD5(){ return PSTR( "e45d45a5a1ce597b249e23fb30fc871f" ); };
 
   };
 

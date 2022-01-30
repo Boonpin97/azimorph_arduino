@@ -4,13 +4,14 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "nav_msgs/OccupancyGrid.h"
 #include "geometry_msgs/PoseWithCovarianceStamped.h"
 
 namespace nav_msgs
 {
 
-static const char SETMAP[] = "nav_msgs/SetMap";
+static const char SETMAP[] PROGMEM = "nav_msgs/SetMap";
 
   class SetMapRequest : public ros::Msg
   {
@@ -26,7 +27,7 @@ static const char SETMAP[] = "nav_msgs/SetMap";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       offset += this->map.serialize(outbuffer + offset);
@@ -34,7 +35,7 @@ static const char SETMAP[] = "nav_msgs/SetMap";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       offset += this->map.deserialize(inbuffer + offset);
@@ -42,8 +43,8 @@ static const char SETMAP[] = "nav_msgs/SetMap";
      return offset;
     }
 
-    virtual const char * getType() override { return SETMAP; };
-    virtual const char * getMD5() override { return "91149a20d7be299b87c340df8cc94fd4"; };
+    const char * getType(){ return SETMAP; };
+    const char * getMD5(){ return PSTR( "91149a20d7be299b87c340df8cc94fd4" ); };
 
   };
 
@@ -58,7 +59,7 @@ static const char SETMAP[] = "nav_msgs/SetMap";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       union {
@@ -71,7 +72,7 @@ static const char SETMAP[] = "nav_msgs/SetMap";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       union {
@@ -85,8 +86,8 @@ static const char SETMAP[] = "nav_msgs/SetMap";
      return offset;
     }
 
-    virtual const char * getType() override { return SETMAP; };
-    virtual const char * getMD5() override { return "358e233cde0c8a8bcfea4ce193f8fc15"; };
+    const char * getType(){ return SETMAP; };
+    const char * getMD5(){ return PSTR( "358e233cde0c8a8bcfea4ce193f8fc15" ); };
 
   };
 

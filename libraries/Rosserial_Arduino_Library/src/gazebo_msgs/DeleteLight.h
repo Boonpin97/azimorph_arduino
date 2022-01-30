@@ -9,11 +9,7 @@
 namespace gazebo_msgs
 {
 
-#ifdef ESP8266
-    static const char DELETELIGHT[] = "gazebo_msgs/DeleteLight";
-#else
-    static const char DELETELIGHT[] PROGMEM = "gazebo_msgs/DeleteLight";
-#endif
+static const char DELETELIGHT[] PROGMEM = "gazebo_msgs/DeleteLight";
 
   class DeleteLightRequest : public ros::Msg
   {
@@ -53,11 +49,7 @@ namespace gazebo_msgs
     }
 
     const char * getType(){ return DELETELIGHT; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("4fb676dfb4741fc866365702a859441c");};
-    #else
-        const char * getMD5() { return  PSTR("4fb676dfb4741fc866365702a859441c");};
-    #endif
+    const char * getMD5(){ return PSTR( "4fb676dfb4741fc866365702a859441c" ); };
 
   };
 
@@ -117,11 +109,7 @@ namespace gazebo_msgs
     }
 
     const char * getType(){ return DELETELIGHT; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("2ec6f3eff0161f4257b808b12bc830c2");};
-    #else
-        const char * getMD5() { return  PSTR("2ec6f3eff0161f4257b808b12bc830c2");};
-    #endif
+    const char * getMD5(){ return PSTR( "2ec6f3eff0161f4257b808b12bc830c2" ); };
 
   };
 

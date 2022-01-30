@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "geometry_msgs/Vector3.h"
 
 namespace geometry_msgs
@@ -42,7 +43,7 @@ namespace geometry_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       offset += serializeAvrFloat64(outbuffer + offset, this->m);
@@ -56,7 +57,7 @@ namespace geometry_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       offset += deserializeAvrFloat64(inbuffer + offset, &(this->m));
@@ -70,8 +71,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "geometry_msgs/Inertia"; };
-    virtual const char * getMD5() override { return "1d26e4bb6c83ff141c5cf0d883c2b0fe"; };
+    const char * getType(){ return PSTR( "geometry_msgs/Inertia" ); };
+    const char * getMD5(){ return PSTR( "1d26e4bb6c83ff141c5cf0d883c2b0fe" ); };
 
   };
 

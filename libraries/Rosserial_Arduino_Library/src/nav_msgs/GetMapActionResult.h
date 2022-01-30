@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "actionlib_msgs/GoalStatus.h"
 #include "nav_msgs/GetMapResult.h"
@@ -29,7 +30,7 @@ namespace nav_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -38,7 +39,7 @@ namespace nav_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -47,8 +48,8 @@ namespace nav_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "nav_msgs/GetMapActionResult"; };
-    virtual const char * getMD5() override { return "ac66e5b9a79bb4bbd33dab245236c892"; };
+    const char * getType(){ return PSTR( "nav_msgs/GetMapActionResult" ); };
+    const char * getMD5(){ return PSTR( "ac66e5b9a79bb4bbd33dab245236c892" ); };
 
   };
 

@@ -4,11 +4,12 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace topic_tools
 {
 
-static const char DEMUXADD[] = "topic_tools/DemuxAdd";
+static const char DEMUXADD[] PROGMEM = "topic_tools/DemuxAdd";
 
   class DemuxAddRequest : public ros::Msg
   {
@@ -21,7 +22,7 @@ static const char DEMUXADD[] = "topic_tools/DemuxAdd";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       uint32_t length_topic = strlen(this->topic);
@@ -32,7 +33,7 @@ static const char DEMUXADD[] = "topic_tools/DemuxAdd";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       uint32_t length_topic;
@@ -47,8 +48,8 @@ static const char DEMUXADD[] = "topic_tools/DemuxAdd";
      return offset;
     }
 
-    virtual const char * getType() override { return DEMUXADD; };
-    virtual const char * getMD5() override { return "d8f94bae31b356b24d0427f80426d0c3"; };
+    const char * getType(){ return DEMUXADD; };
+    const char * getMD5(){ return PSTR( "d8f94bae31b356b24d0427f80426d0c3" ); };
 
   };
 
@@ -60,20 +61,20 @@ static const char DEMUXADD[] = "topic_tools/DemuxAdd";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
      return offset;
     }
 
-    virtual const char * getType() override { return DEMUXADD; };
-    virtual const char * getMD5() override { return "d41d8cd98f00b204e9800998ecf8427e"; };
+    const char * getType(){ return DEMUXADD; };
+    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
 
   };
 

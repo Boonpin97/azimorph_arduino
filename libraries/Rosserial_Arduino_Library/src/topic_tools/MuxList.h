@@ -4,11 +4,12 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace topic_tools
 {
 
-static const char MUXLIST[] = "topic_tools/MuxList";
+static const char MUXLIST[] PROGMEM = "topic_tools/MuxList";
 
   class MuxListRequest : public ros::Msg
   {
@@ -18,20 +19,20 @@ static const char MUXLIST[] = "topic_tools/MuxList";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
      return offset;
     }
 
-    virtual const char * getType() override { return MUXLIST; };
-    virtual const char * getMD5() override { return "d41d8cd98f00b204e9800998ecf8427e"; };
+    const char * getType(){ return MUXLIST; };
+    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
 
   };
 
@@ -44,11 +45,11 @@ static const char MUXLIST[] = "topic_tools/MuxList";
       _topics_type * topics;
 
     MuxListResponse():
-      topics_length(0), st_topics(), topics(nullptr)
+      topics_length(0), topics(NULL)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->topics_length >> (8 * 0)) & 0xFF;
@@ -66,7 +67,7 @@ static const char MUXLIST[] = "topic_tools/MuxList";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       uint32_t topics_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -92,8 +93,8 @@ static const char MUXLIST[] = "topic_tools/MuxList";
      return offset;
     }
 
-    virtual const char * getType() override { return MUXLIST; };
-    virtual const char * getMD5() override { return "b0eef9a05d4e829092fc2f2c3c2aad3d"; };
+    const char * getType(){ return MUXLIST; };
+    const char * getMD5(){ return PSTR( "b0eef9a05d4e829092fc2f2c3c2aad3d" ); };
 
   };
 

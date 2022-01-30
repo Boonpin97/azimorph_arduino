@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "geometry_msgs/Pose.h"
 
@@ -23,11 +24,11 @@ namespace geometry_msgs
 
     PoseArray():
       header(),
-      poses_length(0), st_poses(), poses(nullptr)
+      poses_length(0), poses(NULL)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -42,7 +43,7 @@ namespace geometry_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -61,8 +62,8 @@ namespace geometry_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "geometry_msgs/PoseArray"; };
-    virtual const char * getMD5() override { return "916c28c5764443f268b296bb671b9d97"; };
+    const char * getType(){ return PSTR( "geometry_msgs/PoseArray" ); };
+    const char * getMD5(){ return PSTR( "916c28c5764443f268b296bb671b9d97" ); };
 
   };
 

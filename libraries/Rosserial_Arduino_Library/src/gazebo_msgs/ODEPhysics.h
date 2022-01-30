@@ -117,16 +117,8 @@ namespace gazebo_msgs
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("gazebo_msgs/ODEPhysics");};
-    #else
-        const char * getType() { return  PSTR("gazebo_msgs/ODEPhysics");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("667d56ddbd547918c32d1934503dc335");};
-    #else
-        const char * getMD5() { return  PSTR("667d56ddbd547918c32d1934503dc335");};
-    #endif
+    const char * getType(){ return PSTR( "gazebo_msgs/ODEPhysics" ); };
+    const char * getMD5(){ return PSTR( "667d56ddbd547918c32d1934503dc335" ); };
 
   };
 

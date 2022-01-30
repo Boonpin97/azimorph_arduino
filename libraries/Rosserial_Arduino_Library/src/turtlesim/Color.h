@@ -51,16 +51,8 @@ namespace turtlesim
      return offset;
     }
 
-    #ifdef ESP8266
-        const char * getType() { return  ("turtlesim/Color");};
-    #else
-        const char * getType() { return  PSTR("turtlesim/Color");};
-    #endif
-    #ifdef ESP8266
-        const char * getMD5() { return  ("353891e354491c51aabe32df673fb446");};
-    #else
-        const char * getMD5() { return  PSTR("353891e354491c51aabe32df673fb446");};
-    #endif
+    const char * getType(){ return PSTR( "turtlesim/Color" ); };
+    const char * getMD5(){ return PSTR( "353891e354491c51aabe32df673fb446" ); };
 
   };
 

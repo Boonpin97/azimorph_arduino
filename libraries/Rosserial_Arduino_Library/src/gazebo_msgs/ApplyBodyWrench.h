@@ -13,11 +13,7 @@
 namespace gazebo_msgs
 {
 
-#ifdef ESP8266
-    static const char APPLYBODYWRENCH[] = "gazebo_msgs/ApplyBodyWrench";
-#else
-    static const char APPLYBODYWRENCH[] PROGMEM = "gazebo_msgs/ApplyBodyWrench";
-#endif
+static const char APPLYBODYWRENCH[] PROGMEM = "gazebo_msgs/ApplyBodyWrench";
 
   class ApplyBodyWrenchRequest : public ros::Msg
   {
@@ -130,11 +126,7 @@ namespace gazebo_msgs
     }
 
     const char * getType(){ return APPLYBODYWRENCH; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("e37e6adf97eba5095baa77dffb71e5bd");};
-    #else
-        const char * getMD5() { return  PSTR("e37e6adf97eba5095baa77dffb71e5bd");};
-    #endif
+    const char * getMD5(){ return PSTR( "e37e6adf97eba5095baa77dffb71e5bd" ); };
 
   };
 
@@ -194,11 +186,7 @@ namespace gazebo_msgs
     }
 
     const char * getType(){ return APPLYBODYWRENCH; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("2ec6f3eff0161f4257b808b12bc830c2");};
-    #else
-        const char * getMD5() { return  PSTR("2ec6f3eff0161f4257b808b12bc830c2");};
-    #endif
+    const char * getMD5(){ return PSTR( "2ec6f3eff0161f4257b808b12bc830c2" ); };
 
   };
 

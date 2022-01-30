@@ -9,11 +9,7 @@
 namespace controller_manager_msgs
 {
 
-#ifdef ESP8266
-    static const char RELOADCONTROLLERLIBRARIES[] = "controller_manager_msgs/ReloadControllerLibraries";
-#else
-    static const char RELOADCONTROLLERLIBRARIES[] PROGMEM = "controller_manager_msgs/ReloadControllerLibraries";
-#endif
+static const char RELOADCONTROLLERLIBRARIES[] PROGMEM = "controller_manager_msgs/ReloadControllerLibraries";
 
   class ReloadControllerLibrariesRequest : public ros::Msg
   {
@@ -54,11 +50,7 @@ namespace controller_manager_msgs
     }
 
     const char * getType(){ return RELOADCONTROLLERLIBRARIES; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("18442b59be9479097f11c543bddbac62");};
-    #else
-        const char * getMD5() { return  PSTR("18442b59be9479097f11c543bddbac62");};
-    #endif
+    const char * getMD5(){ return PSTR( "18442b59be9479097f11c543bddbac62" ); };
 
   };
 
@@ -101,11 +93,7 @@ namespace controller_manager_msgs
     }
 
     const char * getType(){ return RELOADCONTROLLERLIBRARIES; };
-    #ifdef ESP8266
-        const char * getMD5() { return  ("6f6da3883749771fac40d6deb24a8c02");};
-    #else
-        const char * getMD5() { return  PSTR("6f6da3883749771fac40d6deb24a8c02");};
-    #endif
+    const char * getMD5(){ return PSTR( "6f6da3883749771fac40d6deb24a8c02" ); };
 
   };
 

@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 #include "actionlib_msgs/GoalStatus.h"
 #include "tf2_msgs/LookupTransformFeedback.h"
@@ -29,7 +30,7 @@ namespace tf2_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -38,7 +39,7 @@ namespace tf2_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -47,8 +48,8 @@ namespace tf2_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "tf2_msgs/LookupTransformActionFeedback"; };
-    virtual const char * getMD5() override { return "aae20e09065c3809e8a8e87c4c8953fd"; };
+    const char * getType(){ return PSTR( "tf2_msgs/LookupTransformActionFeedback" ); };
+    const char * getMD5(){ return PSTR( "aae20e09065c3809e8a8e87c4c8953fd" ); };
 
   };
 

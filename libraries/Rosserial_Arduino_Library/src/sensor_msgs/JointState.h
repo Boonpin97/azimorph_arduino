@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/Header.h"
 
 namespace sensor_msgs
@@ -34,14 +35,14 @@ namespace sensor_msgs
 
     JointState():
       header(),
-      name_length(0), st_name(), name(nullptr),
-      position_length(0), st_position(), position(nullptr),
-      velocity_length(0), st_velocity(), velocity(nullptr),
-      effort_length(0), st_effort(), effort(nullptr)
+      name_length(0), name(NULL),
+      position_length(0), position(NULL),
+      velocity_length(0), velocity(NULL),
+      effort_length(0), effort(NULL)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       offset += this->header.serialize(outbuffer + offset);
@@ -84,7 +85,7 @@ namespace sensor_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       offset += this->header.deserialize(inbuffer + offset);
@@ -147,8 +148,8 @@ namespace sensor_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "sensor_msgs/JointState"; };
-    virtual const char * getMD5() override { return "3066dcd76a6cfaef579bd0f34173e9fd"; };
+    const char * getType(){ return PSTR( "sensor_msgs/JointState" ); };
+    const char * getMD5(){ return PSTR( "3066dcd76a6cfaef579bd0f34173e9fd" ); };
 
   };
 

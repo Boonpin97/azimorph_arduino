@@ -4,11 +4,12 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace topic_tools
 {
 
-static const char MUXSELECT[] = "topic_tools/MuxSelect";
+static const char MUXSELECT[] PROGMEM = "topic_tools/MuxSelect";
 
   class MuxSelectRequest : public ros::Msg
   {
@@ -21,7 +22,7 @@ static const char MUXSELECT[] = "topic_tools/MuxSelect";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       uint32_t length_topic = strlen(this->topic);
@@ -32,7 +33,7 @@ static const char MUXSELECT[] = "topic_tools/MuxSelect";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       uint32_t length_topic;
@@ -47,8 +48,8 @@ static const char MUXSELECT[] = "topic_tools/MuxSelect";
      return offset;
     }
 
-    virtual const char * getType() override { return MUXSELECT; };
-    virtual const char * getMD5() override { return "d8f94bae31b356b24d0427f80426d0c3"; };
+    const char * getType(){ return MUXSELECT; };
+    const char * getMD5(){ return PSTR( "d8f94bae31b356b24d0427f80426d0c3" ); };
 
   };
 
@@ -63,7 +64,7 @@ static const char MUXSELECT[] = "topic_tools/MuxSelect";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       uint32_t length_prev_topic = strlen(this->prev_topic);
@@ -74,7 +75,7 @@ static const char MUXSELECT[] = "topic_tools/MuxSelect";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       uint32_t length_prev_topic;
@@ -89,8 +90,8 @@ static const char MUXSELECT[] = "topic_tools/MuxSelect";
      return offset;
     }
 
-    virtual const char * getType() override { return MUXSELECT; };
-    virtual const char * getMD5() override { return "3db0a473debdbafea387c9e49358c320"; };
+    const char * getType(){ return MUXSELECT; };
+    const char * getMD5(){ return PSTR( "3db0a473debdbafea387c9e49358c320" ); };
 
   };
 

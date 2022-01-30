@@ -4,12 +4,13 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "diagnostic_msgs/DiagnosticStatus.h"
 
 namespace diagnostic_msgs
 {
 
-static const char SELFTEST[] = "diagnostic_msgs/SelfTest";
+static const char SELFTEST[] PROGMEM = "diagnostic_msgs/SelfTest";
 
   class SelfTestRequest : public ros::Msg
   {
@@ -19,20 +20,20 @@ static const char SELFTEST[] = "diagnostic_msgs/SelfTest";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
      return offset;
     }
 
-    virtual const char * getType() override { return SELFTEST; };
-    virtual const char * getMD5() override { return "d41d8cd98f00b204e9800998ecf8427e"; };
+    const char * getType(){ return SELFTEST; };
+    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
 
   };
 
@@ -51,11 +52,11 @@ static const char SELFTEST[] = "diagnostic_msgs/SelfTest";
     SelfTestResponse():
       id(""),
       passed(0),
-      status_length(0), st_status(), status(nullptr)
+      status_length(0), status(NULL)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       uint32_t length_id = strlen(this->id);
@@ -81,7 +82,7 @@ static const char SELFTEST[] = "diagnostic_msgs/SelfTest";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       uint32_t length_id;
@@ -116,8 +117,8 @@ static const char SELFTEST[] = "diagnostic_msgs/SelfTest";
      return offset;
     }
 
-    virtual const char * getType() override { return SELFTEST; };
-    virtual const char * getMD5() override { return "ac21b1bab7ab17546986536c22eb34e9"; };
+    const char * getType(){ return SELFTEST; };
+    const char * getMD5(){ return PSTR( "ac21b1bab7ab17546986536c22eb34e9" ); };
 
   };
 

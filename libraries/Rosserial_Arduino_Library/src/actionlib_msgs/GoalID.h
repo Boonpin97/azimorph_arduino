@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "ros/time.h"
 
 namespace actionlib_msgs
@@ -24,7 +25,7 @@ namespace actionlib_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->stamp.sec >> (8 * 0)) & 0xFF;
@@ -45,7 +46,7 @@ namespace actionlib_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       this->stamp.sec =  ((uint32_t) (*(inbuffer + offset)));
@@ -70,8 +71,8 @@ namespace actionlib_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "actionlib_msgs/GoalID"; };
-    virtual const char * getMD5() override { return "302881f31927c1df708a2dbab0e80ee8"; };
+    const char * getType(){ return PSTR( "actionlib_msgs/GoalID" ); };
+    const char * getMD5(){ return PSTR( "302881f31927c1df708a2dbab0e80ee8" ); };
 
   };
 

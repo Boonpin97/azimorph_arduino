@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "std_msgs/MultiArrayLayout.h"
 
 namespace std_msgs
@@ -22,11 +23,11 @@ namespace std_msgs
 
     UInt8MultiArray():
       layout(),
-      data_length(0), st_data(), data(nullptr)
+      data_length(0), data(NULL)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       offset += this->layout.serialize(outbuffer + offset);
@@ -42,7 +43,7 @@ namespace std_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       offset += this->layout.deserialize(inbuffer + offset);
@@ -62,8 +63,8 @@ namespace std_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "std_msgs/UInt8MultiArray"; };
-    virtual const char * getMD5() override { return "82373f1612381bb6ee473b5cd6f5d89c"; };
+    const char * getType(){ return PSTR( "std_msgs/UInt8MultiArray" ); };
+    const char * getMD5(){ return PSTR( "82373f1612381bb6ee473b5cd6f5d89c" ); };
 
   };
 

@@ -4,12 +4,13 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 #include "roscpp/Logger.h"
 
 namespace roscpp
 {
 
-static const char GETLOGGERS[] = "roscpp/GetLoggers";
+static const char GETLOGGERS[] PROGMEM = "roscpp/GetLoggers";
 
   class GetLoggersRequest : public ros::Msg
   {
@@ -19,20 +20,20 @@ static const char GETLOGGERS[] = "roscpp/GetLoggers";
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
      return offset;
     }
 
-    virtual const char * getType() override { return GETLOGGERS; };
-    virtual const char * getMD5() override { return "d41d8cd98f00b204e9800998ecf8427e"; };
+    const char * getType(){ return GETLOGGERS; };
+    const char * getMD5(){ return PSTR( "d41d8cd98f00b204e9800998ecf8427e" ); };
 
   };
 
@@ -45,11 +46,11 @@ static const char GETLOGGERS[] = "roscpp/GetLoggers";
       _loggers_type * loggers;
 
     GetLoggersResponse():
-      loggers_length(0), st_loggers(), loggers(nullptr)
+      loggers_length(0), loggers(NULL)
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->loggers_length >> (8 * 0)) & 0xFF;
@@ -63,7 +64,7 @@ static const char GETLOGGERS[] = "roscpp/GetLoggers";
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       uint32_t loggers_lengthT = ((uint32_t) (*(inbuffer + offset))); 
@@ -81,8 +82,8 @@ static const char GETLOGGERS[] = "roscpp/GetLoggers";
      return offset;
     }
 
-    virtual const char * getType() override { return GETLOGGERS; };
-    virtual const char * getMD5() override { return "32e97e85527d4678a8f9279894bb64b0"; };
+    const char * getType(){ return GETLOGGERS; };
+    const char * getMD5(){ return PSTR( "32e97e85527d4678a8f9279894bb64b0" ); };
 
   };
 

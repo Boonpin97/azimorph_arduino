@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace tf2_msgs
 {
@@ -30,7 +31,7 @@ namespace tf2_msgs
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       *(outbuffer + offset + 0) = (this->error >> (8 * 0)) & 0xFF;
@@ -43,7 +44,7 @@ namespace tf2_msgs
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       this->error =  ((uint8_t) (*(inbuffer + offset)));
@@ -60,8 +61,8 @@ namespace tf2_msgs
      return offset;
     }
 
-    virtual const char * getType() override { return "tf2_msgs/TF2Error"; };
-    virtual const char * getMD5() override { return "bc6848fd6fd750c92e38575618a4917d"; };
+    const char * getType(){ return PSTR( "tf2_msgs/TF2Error" ); };
+    const char * getMD5(){ return PSTR( "bc6848fd6fd750c92e38575618a4917d" ); };
 
   };
 

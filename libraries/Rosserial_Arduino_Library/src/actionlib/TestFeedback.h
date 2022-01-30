@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "ros/msg.h"
+#include "ArduinoIncludes.h"
 
 namespace actionlib
 {
@@ -20,7 +21,7 @@ namespace actionlib
     {
     }
 
-    virtual int serialize(unsigned char *outbuffer) const override
+    virtual int serialize(unsigned char *outbuffer) const
     {
       int offset = 0;
       union {
@@ -36,7 +37,7 @@ namespace actionlib
       return offset;
     }
 
-    virtual int deserialize(unsigned char *inbuffer) override
+    virtual int deserialize(unsigned char *inbuffer)
     {
       int offset = 0;
       union {
@@ -53,8 +54,8 @@ namespace actionlib
      return offset;
     }
 
-    virtual const char * getType() override { return "actionlib/TestFeedback"; };
-    virtual const char * getMD5() override { return "49ceb5b32ea3af22073ede4a0328249e"; };
+    const char * getType(){ return PSTR( "actionlib/TestFeedback" ); };
+    const char * getMD5(){ return PSTR( "49ceb5b32ea3af22073ede4a0328249e" ); };
 
   };
 
