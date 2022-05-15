@@ -22,7 +22,7 @@
 #define Wheel_Distance 0.5
 #define Wheel_Circumference 0.798
 #define RPM_Click 70
-#define Encoder_Click 240
+#define Encoder_Click 420
 
 ros::NodeHandle nh;
 
@@ -213,7 +213,8 @@ void Odometry() {
 
   float left_delta_metre = (((FL_delta_enc + BL_delta_enc) / 2) / Encoder_Click ) * Wheel_Circumference;
   float right_delta_metre = (((FR_delta_enc + BR_delta_enc) / 2) / Encoder_Click ) * Wheel_Circumference;
-
+//  float left_delta_metre = (FL_delta_enc  / Encoder_Click ) * Wheel_Circumference;
+//  float right_delta_metre = (FR_delta_enc / Encoder_Click ) * Wheel_Circumference;
   float delta_r = (left_delta_metre + right_delta_metre) / 2.0;
   float delta_theta = (right_delta_metre - left_delta_metre) / Wheel_Distance; //angular velocity*/
 
@@ -237,25 +238,25 @@ void Odometry() {
   //    Serial.print(" theta:");
   //    Serial.println(vtheta);
 
-//      Serial.print("FR");
-//      Serial.print(current_FR_enc);
-//      Serial.print(" BR:");
-//      Serial.print(current_BR_enc);
-//      Serial.print(" FL:");
-//      Serial.print(current_FL_enc);
-//      Serial.print(" BL");
-//      Serial.println(current_BL_enc);
+      Serial.print("FR");
+      Serial.print(current_FR_enc);
+      Serial.print(" BR:");
+      Serial.print(current_BR_enc);
+      Serial.print(" FL:");
+      Serial.print(current_FL_enc);
+      Serial.print(" BL");
+      Serial.println(current_BL_enc);
   //  Serial.print("left_ms:");
   //  Serial.print(left_speed_ms);
   //  Serial.print(" |right_ms:");
   //  Serial.print(right_speed_ms);
 
-  Serial.print(" |x:");
-  Serial.print(x);
-  Serial.print(" |y:");
-  Serial.print(y);
-  Serial.print(" |theta:");
-  Serial.println(THETA);
+//  Serial.print(" |x:");
+//  Serial.print(x);
+//  Serial.print(" |y:");
+//  Serial.print(y);
+//  Serial.print(" |theta:");
+//  Serial.println(THETA);
 
   geometry_msgs::Quaternion quaternion;
   quaternion.x = 0.0;
@@ -279,5 +280,5 @@ void Odometry() {
   odom_msg.twist.twist.angular.y = 0;
   odom_msg.twist.twist.angular.z = THETA;
 
-  //odomPub.publish(&odom_msg);
+  odomPub.publish(&odom_msg);
 }
