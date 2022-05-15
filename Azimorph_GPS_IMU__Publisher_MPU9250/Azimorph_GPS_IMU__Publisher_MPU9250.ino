@@ -3,6 +3,7 @@
 #include <ros.h>
 #include <ros/time.h>
 #include <sensor_msgs/Imu.h>
+#include <sensor_msgs/MagneticField.h>
 #include <sensor_msgs/NavSatFix.h>
 #include <TinyGPS.h>
 #include <Wire.h>
